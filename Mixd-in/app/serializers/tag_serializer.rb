@@ -1,4 +1,4 @@
 class TagSerializer < ActiveModel::Serializer
   attributes :id, :name
-  belongs_to :drink
+  has_many :drinks
 end
