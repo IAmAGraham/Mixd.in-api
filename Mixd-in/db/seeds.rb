@@ -101,7 +101,6 @@ DrinkEquipment.create(drink_id:2, equipment_id: 2)
 DrinkEquipment.create(drink_id:2, equipment_id: 8)
 DrinkEquipment.create(drink_id:2, equipment_id: 7)
 
-
 Tag.create(name: 'Cocktail')
 Tag.create(name: 'Fruity')
 Tag.create(name: 'Spicy')
