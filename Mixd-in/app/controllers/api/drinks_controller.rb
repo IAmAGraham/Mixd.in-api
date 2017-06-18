@@ -21,6 +21,17 @@ class Api::DrinksController < ApplicationController
           DrinkIngredient.create(drink_id: drink.id, ingredient_id: ing.id)
         end
       }
+
+    params['drink']['equipments'].each {|equip|
+      equ = Equipment.find_or_create_by(name: equip['name'])
+          DrinkEquipment.create(drink_id: drink.id, equipment_id: equ.id)
+      }
+
+    params['drink']['tags'].each {|tag|
+      t = Tag.find_or_create_by(name: tag['name'])
+          DrinkTag.create(drink_id: drink.id, tag_id: t.id)
+      }
+
     render json: drink
   end
 
@@ -35,7 +46,7 @@ class Api::DrinksController < ApplicationController
   private
 
   def drinks_params
-    params.require(:drink).permit(:name, :description, :ingredients)
+    params.require(:drink).permit(:name, :description, :ingredients, :equipments, :tags)
   end
 
 end
