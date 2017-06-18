@@ -32,6 +32,11 @@ class Api::DrinksController < ApplicationController
           DrinkTag.create(drink_id: drink.id, tag_id: t.id)
       }
 
+    params['drink']['steps'].each {|step|
+      s = Step.find_or_create_by(name: step['name'], length_of_time: step['length_of_time'])
+          DrinkStep.create(drink_id: drink.id, step_id: s.id)
+      }
+
     render json: drink
   end
 
@@ -46,7 +51,7 @@ class Api::DrinksController < ApplicationController
   private
 
   def drinks_params
-    params.require(:drink).permit(:name, :description, :ingredients, :equipments, :tags)
+    params.require(:drink).permit(:name, :description, :ingredients, :equipments, :tags, :steps)
   end
 
 end
