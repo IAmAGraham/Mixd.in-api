@@ -9,10 +9,8 @@ class Api::DrinksController < ApplicationController
     render json: drink
   end
 
-
   def create
     drink = Drink.create(drinks_params)
-
     params['drink']['ingredients'].each {|ingre|
       ing = Ingredient.find_or_create_by(name: ingre['name'], unit: ingre['unit'])
         amount = ingre['quantity'].to_i*2
@@ -54,3 +52,11 @@ class Api::DrinksController < ApplicationController
   end
 
 end
+
+params.require(:drink).permit(:id, 
+                              :name, 
+                              :description,
+                              :ingredients_attributes => [:id, :name, :drink_id],
+                              :equipments_attributes =>  [:id, :name, :drink_id],
+                              :tags_attributes => [:tags, :id, :drink_id]
+                            )

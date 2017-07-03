@@ -7,4 +7,9 @@ class Drink < ApplicationRecord
   has_many :tags, through: :drink_tags
   has_many :drink_equipments
   has_many :equipments, through: :drink_equipments
+  accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :steps
+  accepts_nested_attributes_for :equipments
+  accepts_nested_attributes_for :tags
+  
 end
