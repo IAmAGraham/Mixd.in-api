@@ -52,11 +52,3 @@ class Api::DrinksController < ApplicationController
   end
 
 end
-
-params.require(:drink).permit(:id, 
-                              :name, 
-                              :description,
-                              :ingredients_attributes => [:id, :name, :drink_id],
-                              :equipments_attributes =>  [:id, :name, :drink_id],
-                              :tags_attributes => [:tags, :id, :drink_id]
-                            )
